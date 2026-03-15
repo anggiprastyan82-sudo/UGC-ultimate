@@ -1,0 +1,42 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import { GoogleGenAI } from "@google/genai";
+
+// Buat client tanpa masukkan API key manual
+// Nanti Vercel ambil dari Environment Variable VITE_GEMINI_API_KEY
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
+
+const App = () => {
+  const handleGenerate = async () => {
+    try {
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: "Generate a sample UGC photo prompt"
+      });
+      console.log(response.text);
+      alert("Check console for output");
+    } catch (err) {
+      console.error(err);
+      alert("Gagal generate. Lihat console.");
+    }
+  };
+
+  return (
+    <div className="p-8">
+      <h1 className="text-3xl font-bold mb-4">UGC Photo AI Generator</h1>
+      <button
+        className="px-4 py-2 bg-blue-500 text-white rounded"
+        onClick={handleGenerate}
+      >
+        Generate UGC
+      </button>
+      <p className="mt-4 text-gray-600">Klik tombol untuk generate foto UGC.</p>
+    </div>
+  );
+};
+
+if (ReactDOM.createRoot) {
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+} else {
+  ReactDOM.render(<App />, document.getElementById("root"));
+}
