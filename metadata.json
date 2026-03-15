@@ -1,0 +1,7 @@
+{
+  "name": "UGC Image Content script narasi",
+  "description": "A professional tool for generating UGC-style photos based on reference images, complete with AI-generated marketing hooks and CTAs for TikTok, Instagram, and YouTube.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
